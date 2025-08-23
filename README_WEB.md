@@ -27,22 +27,44 @@
 - **JSON 형식**: 구조화된 데이터로 저장
 - **요약 정보**: 핵심 통계 및 분석 결과
 
-## 🚀 빠른 시작
+## 🚀 설치 및 실행
 
-### 1. 의존성 설치
+### 시스템 요구사항
+- Python 3.8 이상
+- nmap (시스템에 설치 필요)
+- 웹 브라우저 (Chrome, Firefox, Safari, Edge)
+
+### 1. 저장소 클론
+```bash
+git clone <repository-url>
+cd security-analyzer-web
+```
+
+### 2. 가상환경 생성 및 활성화
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# 또는
+venv\Scripts\activate  # Windows
+```
+
+### 3. 의존성 설치
 ```bash
 pip install -r requirements_web.txt
 ```
 
-### 2. nmap 설치 (시스템별)
+### 4. nmap 설치 (시스템별)
 **Ubuntu/Debian:**
 ```bash
-sudo apt update && sudo apt install nmap
+sudo apt update
+sudo apt install nmap
 ```
 
 **CentOS/RHEL:**
 ```bash
 sudo yum install nmap
+# 또는
+sudo dnf install nmap
 ```
 
 **macOS:**
@@ -50,12 +72,16 @@ sudo yum install nmap
 brew install nmap
 ```
 
-### 3. 애플리케이션 실행
+**Windows:**
+- [nmap 공식 사이트](https://nmap.org/download.html)에서 다운로드
+- 설치 후 시스템 PATH에 추가
+
+### 5. 애플리케이션 실행
 ```bash
-python run_web.py
+python web_app.py
 ```
 
-### 4. 웹 브라우저에서 접속
+### 6. 웹 브라우저에서 접속
 ```
 http://localhost:5000
 ```
@@ -106,9 +132,8 @@ http://localhost:5000
 ```
 security-analyzer-web/
 ├── web_app.py              # Flask 웹 서버
-├── run_web.py              # 실행 스크립트
 ├── requirements_web.txt    # Python 의존성
-├── README.md              # 프로젝트 문서
+├── README_WEB.md          # 프로젝트 문서
 ├── templates/             # HTML 템플릿
 │   └── index.html        # 메인 페이지
 └── static/               # 정적 파일
@@ -179,7 +204,7 @@ sudo setcap cap_net_raw,cap_net_admin,cap_net_bind_service+eip $(which nmap)
 **2. 포트 5000 사용 중**
 ```bash
 # 다른 포트로 실행
-python run_web.py --port 8080
+python web_app.py --port 8080
 ```
 
 **3. 방화벽 문제**

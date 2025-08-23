@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 보안 취약점 분석기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-shield-alt"></i> 보안 취약점 분석기</h1>
+                <p>네트워크 보안 분석 및 취약점 탐지 도구</p>
+            </div>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <!-- IP 입력 섹션 -->
+            <section class="input-section">
+                <div class="card">
+                    <h2><i class="fas fa-network-wired"></i> 대상 시스템 설정</h2>
+                    <div class="input-group">
+                        <label for="target-ip">대상 IP 주소:</label>
+                        <input type="text" id="target-ip" placeholder="예: 192.168.1.100" value="127.0.0.1">
+                        <button id="check-network" class="btn btn-secondary">
+                            <i class="fas fa-search"></i> 연결 확인
+                        </button>
+                    </div>
+                    <div id="network-info" class="network-info hidden"></div>
+                </div>
+            </section>
+
+            <!-- 스캔 설정 섹션 -->
+            <section class="scan-section">
+                <div class="card">
+                    <h2><i class="fas fa-search"></i> 스캔 설정</h2>
+                    <div class="scan-options">
+                        <div class="option-group">
+                            <label>스캔 유형:</label>
+                            <select id="scan-type">
+                                <option value="basic">기본 스캔 (빠름)</option>
+                                <option value="standard">표준 스캔</option>
+                                <option value="full">전체 스캔 (느림)</option>
+                            </select>
+                        </div>
+                        <button id="start-scan" class="btn btn-primary">
+                            <i class="fas fa-play"></i> 스캔 시작
+                        </button>
+                    </div>
+                    <div id="scan-progress" class="scan-progress hidden">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p class="progress-text">스캔 중...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 결과 섹션 -->
+            <section class="results-section">
+                <div class="card">
+                    <h2><i class="fas fa-chart-bar"></i> 스캔 결과</h2>
+                    <div id="results-content" class="results-content">
+                        <div class="no-results">
+                            <i class="fas fa-info-circle"></i>
+                            <p>스캔을 시작하여 결과를 확인하세요.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 보고서 섹션 -->
+            <section class="report-section">
+                <div class="card">
+                    <h2><i class="fas fa-file-alt"></i> 보고서</h2>
+                    <div class="report-actions">
+                        <button id="generate-report" class="btn btn-success" disabled>
+                            <i class="fas fa-download"></i> 보고서 생성
+                        </button>
+                    </div>
+                    <div id="report-content" class="report-content hidden"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <p>&copy; 2024 보안 취약점 분석기. 교육 및 합법적인 보안 테스트 목적으로만 사용하세요.</p>
+        </footer>
+    </div>
+
+    <!-- 모달 -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
